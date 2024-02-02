@@ -1,6 +1,6 @@
 import { Router } from "express";
+import { ObjectId } from "mongodb";
 import db from "../db/conn.js";
-import {ObjectId} from "mongodb"
 
 const router = new Router();
 
@@ -13,15 +13,13 @@ router.get("/", async (req, res) => {
 
     const movies = await collection.find().toArray();
 
-    const topTen = movies.slice(0, 10);
+    const topTen = movies.slice(0, 20);
 
     res.status(200).json(topTen);
-    
   } catch (error) {
     console.log(error);
   }
 });
-
 
 /**
  * GET /:id
